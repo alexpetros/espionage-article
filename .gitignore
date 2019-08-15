@@ -1,0 +1,25 @@
+# compiled files
+*.aux
+*.bbl
+*.blg
+*.toc
+*.lof
+*.lot
+*.log
+*.out
+*.pdf
+*.sta
+*.bcf
+*.run.xml
+*.synctex.gz
+*.Rhistory
+*.fdb_latexmk
+*.fls
+
+# folders
+/class
+/misc
+/trash
+
+# other stuff
+.DS_Store

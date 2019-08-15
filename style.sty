@@ -1,0 +1,87 @@
+% basic template found here:
+% https://en.wikibooks.org/wiki/LaTeX/Creating_Packages
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{style}
+
+%% 'sans serif' option
+\DeclareOption{sans}{
+  \renewcommand{\familydefault}{\sfdefault}
+}
+
+% sets the default option
+% \ExecuteOptions{sans}
+
+% terminates option processing
+\ProcessOptions\relax
+
+% chicago style biliography
+\usepackage[english]{babel}
+\usepackage[authordate,
+            backend=biber,
+            isbn=false,
+            doi=false,
+            footmarkoff]
+            {biblatex-chicago}
+% remove language field
+\AtEveryBibitem{\clearlist{language}}
+% \footmarkstyle{#1.\,}
+\renewcommand{\bibfont}{\SingleSpacing}
+
+% structure and link
+\usepackage[hidelinks,
+            hyperfootnotes = false]
+            {hyperref}
+
+% image and table packages
+\usepackage{multicol,multirow}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{csvsimple}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{tikz}
+
+% paragraph formatting
+% if you switch off of memoir, then add setspace and change spacing commands
+% \DoubleSpacing
+% \setlength{\parindent}{7ex}
+% \setlength{\parskip}{1em}
+
+% image formatting
+\usepackage[margin=1in]{geometry}
+
+% text entry commands
+\usepackage[super]{nth}
+\usepackage{csquotes}
+\AtBeginEnvironment{quote}{\small\SingleSpacing\vspace{-\topsep}}
+\newenvironment{noparindent}{\setlength{\parindent}{0cm}}{}
+
+% LaTeX figure numbering bug?
+% https://tex.stackexchange.com/questions/427451/dot-between-chapter-number-and-figure-number-disapear-after-update
+\makeatletter
+\renewcommand{\counterwithin}{\@ifstar{\@csinstar}{\@csin}}
+\makeatother
+
+
+% change how ibid works in biblatex-chicago
+% https://tex.stackexchange.com/questions/250923/turn-off-omitting-of-repeated-authors
+\makeatletter
+\renewbibmacro*{cite:ibid}{%
+  \iftoggle{cms@noibid}%
+  {\blx@ibidreset%
+    \usebibmacro{cite}}%
+  {\iffootnote
+     {\printtext[bibhyperref]{%
+        \bibstring[\mkibid]{ibidem}}}
+     {\ifthenelse{\iffieldundef{prenote}\AND%
+                  \iffieldundef{postnote}}%
+        {\blx@ibidreset%
+         \usebibmacro{cite}%
+         \PackageWarning{biblatex-chicago}%
+           {Empty Ibidem citation}}%
+        {\toggletrue{cms@inlineibid}}}}}
+\makeatother
+
+\endinput
