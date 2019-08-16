@@ -1,15 +1,27 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
+\usepackage{style}
 
 \title{Draft Article}
 \author{Alexander W. Petros}
 \date{September 2019}
-\usepackage{style}
 
-% \addbibresource{thesis.bib}
+% \addbibresource{article.bib}
 
 \begin{document}
 \maketitle
 \newpage
 
-Some text
+The most damaging cyberattack committed against the United States federal government by a foreign agent was not a dramatic affair. Starting sometime in 2014, a small probe lurked deep within the network of the US Office of Personnel Management (OPM), an office of about 5,000 employees tasked with overseeing background checks, payroll, and other human resources concerns for the federal government. At regular intervals, the probe would send updates to opmsecurity.org, a domain registered to look like an official website, but not actually affiliated with the US government or the OPM security team. By the time the breach was discovered in April 2015, the cyber-spy had already accomplished its mission---the probe had accessed crucial federal databases and transmitted the stolen data back to its country of origin.
+
+Internal investigators determined that OPM had been compromised by an advanced persistent threat (APT), a formally organized and typically state-sponsored group of hackers. US officials would only confirm that they believed a \enquote{foreign entity or government} had been behind the attack, but it was an open secret at the time that they suspected the involvement of the Chinese government.\footcite{spetalnick_china_2015} The APT made identification easy by leaving their calling-card: the trojan opmsecurity.org domain was registered in the name of \enquote{Steve Rogers,} the Marvel comics character better known as Captain America. This virtual taunt, along with Chinese-based email and IP addresses, all but guaranteed that the attack had come from an APT sponsored by the Chinese government, likely the Chinese military's cyber-espionage division.
+
+One of the compromised databases was a trove of applications for federal security clearance, compromising the
+
+
+In recent years, cyberattacks perpetrated by state-sponsored foreign agents have received ever-increasing levels of public scrutiny.
+
+
+As investigations continued, the news got worse; the scope of the attack greatly exceeded the initial estimates. The Chinese had accessed an OPM database of applications for security clearance---which exposed not just the personal data of the applicants themselves but also the detailed information they had supplied about their family and friends.\footcite{nakashima_hacks_2015} Millions of social security numbers, job applications, and home addresses had been compromised, including information about personnel at the highest levels of government. When OPM announced the full extent of the damage, it caused an uproar. The American Federation of Government Employees, the largest federal workers union, filed a class-action lawsuit against OPM, seeking damages under the Privacy Act.\footcite[The lawsuits were later dismissed.]{chalfant_court_2017} Mark Warner (D-Va.), a member of the Senate Intelligence Committee whose constituents included many of the employees affected, called for OPM Director Katherine Archuleta's resignation. Because the information might be used for identity theft, the US government offered all affected employees free credit and identity monitoring services for three years.\footcite{nakashima_hacks_2015}
+
+Not only was the OPM hack a public relations disaster, it had enormous implications for national security and counterintelligence. US officials feared that the stolen records could expose undercover CIA operatives working in embassies around the world, whose names would be suspiciously absent from the OPM records.\footcite{nakashima_hacks_2015} The information could be used by a foreign intelligence service to identify American officials who might be susceptible to pressure, or worse, recruitment. FBI Director James Comey personally took questions about the incident. ``If you have my [application for security clearance],'' Comey said, ``you know every place I've lived since I was 18, contact people at those addresses, neighbors at those addresses, all of my family, every place I've traveled outside the United States. Just imagine if you were a foreign intelligence service and you had that data.''\footcite{nakashima_hacks_2015} Now the Chinese intelligence service did and, more disturbingly, there were no signs of what they intended to do with it.\footcite{koerner_inside_2016}
 \end{document}
