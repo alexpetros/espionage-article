@@ -15,16 +15,20 @@
 % terminates option processing
 \ProcessOptions\relax
 
+% page style
+\pagestyle{myheadings}
+
 % chicago style biliography
 \usepackage[english]{babel}
-\usepackage[authordate,
-            backend=biber,
+\usepackage[backend=biber,
+            url=false,
             isbn=false,
             doi=false,
             footmarkoff]
             {biblatex-chicago}
 % remove language field
 \AtEveryBibitem{\clearlist{language}}
+
 % \footmarkstyle{#1.\,}
 \renewcommand{\bibfont}{\SingleSpacing}
 
