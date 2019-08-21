@@ -21,7 +21,7 @@ us_targeted <- cyber_incidents %>%
 
 # count of how often states respond to cyber-incidents by type
 # swap in us_targeted for for US-only count
-response_stats <- cyber_incidents %>% 
+response_stats <- us_targeted %>% 
   group_by(Type) %>% 
   summarize(num_incidents = n(), 
             num_responses = sum(has_response==TRUE), 
@@ -35,5 +35,5 @@ response_stats
 ggplot(data=filter(us_targeted, !is.na(Response))) +
   geom_bar(mapping=aes(x=Type, fill=Response))
 
-ex_table <- filter(us_targeted, Response == "Criminal")
-ex_table
+# ex_table <- filter(us_targeted, Response == "Criminal")
+# ex_table
