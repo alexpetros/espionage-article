@@ -3,6 +3,9 @@
 library(tidyverse)
 library(ggthemes)
 
+# comment this line if your file is elsewhere
+setwd('~/Documents/journal/src/data/')
+
 # https://www.cfr.org/interactive/cyber-operations
 cfr_data <- read_csv('./cyber-operations-incidents.csv') 
 
@@ -21,7 +24,7 @@ us_targeted <- cyber_incidents %>%
 
 # count of how often states respond to cyber-incidents by type
 # swap in us_targeted for for US-only count
-response_stats <- us_targeted %>% 
+response_stats <- cyber_incidents %>% 
   group_by(Type) %>% 
   summarize(num_incidents = n(), 
             num_responses = sum(has_response==TRUE), 
