@@ -15,8 +15,9 @@
 % terminates option processing
 \ProcessOptions\relax
 
-% page style
+% page and section style
 \pagestyle{myheadings}
+\setcounter{secnumdepth}{0}
 
 % chicago style biliography
 \usepackage[english]{babel}
@@ -28,6 +29,7 @@
             {biblatex-chicago}
 % remove language field
 \AtEveryBibitem{\clearlist{language}}
+\AtEveryBibitem{\clearlist{url}}
 
 % \footmarkstyle{#1.\,}
 \renewcommand{\bibfont}{\SingleSpacing}
