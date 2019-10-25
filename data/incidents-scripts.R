@@ -4,6 +4,7 @@ library(tidyverse)
 library(ggthemes)
 library(xtable)
 library(clipr)
+library(lubridate)
 
 # comment this line if your file is elsewhere
 setwd('~/Documents/journal/src/data/')
@@ -28,12 +29,15 @@ us_targeted <- cyber_incidents %>%
 # swap in us_targeted for for US-only count
 response_stats <- cyber_incidents %>% 
   filter(Type !='Undefined' & !is.na(Sponsor) & !is.na(Victims)) %>% 
-  group_by(Type) %>% 
+  filter(Date > as.Date('2010-01-01')) %>% 
+  # group_by(Type) %>% 
   summarize(num_incidents = n(), 
             num_responses = sum(has_response==TRUE), 
             response_pct = mean(has_response==TRUE)*100) %>% 
   ungroup() %>% 
   arrange(desc(response_pct))
+
+response_stats
 
 # print the table and save it as an xtable
 response_stats
