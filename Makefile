@@ -5,6 +5,10 @@
 
 # VARIABLES
 NAME = article
+OPEN_CMD = open 
+
+# Uncomment below if on linux
+# OPEN_CMD = xdg-open
 
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
@@ -14,7 +18,7 @@ NAME = article
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
 all: $(NAME).pdf
-	open $(NAME).pdf
+	$(OPEN_CMD) $(NAME).pdf
 
 # CUSTOM BUILD RULES
 
