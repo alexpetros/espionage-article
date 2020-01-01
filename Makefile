@@ -5,10 +5,10 @@
 
 # VARIABLES
 NAME = article
-OPEN_CMD = open 
+OPEN_CMD = open
 
 # Uncomment below if on linux
-# OPEN_CMD = xdg-open
+OPEN_CMD = xdg-open
 
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
