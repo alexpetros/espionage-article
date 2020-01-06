@@ -59,11 +59,16 @@
 % image formatting
 \usepackage[margin=1in]{geometry}
 
+% define changemargin for on-the-fly margin changes
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
 % text entry commands
 \usepackage[super]{nth}
 \usepackage{csquotes}
-\AtBeginEnvironment{quote}{\small\SingleSpacing\vspace{-\topsep}}
 \newenvironment{noparindent}{\setlength{\parindent}{0cm}}{}
+\newenvironment{quoteblock}{\small\begin{changemargin}{1cm}{1cm}}{\end{changemargin}}
+
 
 % LaTeX figure numbering bug?
 % https://tex.stackexchange.com/questions/427451/dot-between-chapter-number-and-figure-number-disapear-after-update
