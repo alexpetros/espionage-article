@@ -15,7 +15,6 @@ OPEN_CMD = open
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
 all: $(NAME).pdf
-	$(OPEN_CMD) $(NAME).pdf
 
 # CUSTOM BUILD RULES
 
@@ -41,6 +40,10 @@ all: $(NAME).pdf
 
 $(NAME).pdf: $(NAME).tex
 	latexmk -pdf -bibtex -pdflatex="pdflatex -interaction=nonstopmode" -use-make $(NAME).tex
+
+# open target after building
+open: $(NAME).pdf
+	$(OPEN_CMD) $(NAME).pdf
 
 # add -bibtex if you want to clean bibtexw
 clean:
