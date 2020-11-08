@@ -50,10 +50,19 @@
 \usepackage{tikz}
 \usepackage{csquotes}
 \usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{fancyhdr}
 
 % paragraph formatting
-% if you switch off of memoir, then add setspace and change spacing commands
-% \DoubleSpacing
+\doublespacing
+
+% Set the right side of the footer to be the page number
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyfootoffset[R]{0pt}
+\rfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
 % \setlength{\parindent}{7ex}
 % \setlength{\parskip}{1em}
 
