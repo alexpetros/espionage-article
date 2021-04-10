@@ -7,14 +7,15 @@ library(clipr)
 library(lubridate)
 
 # comment this line if your file is elsewhere
-setwd('~/Documents/journal/src/data/')
+setwd('~/writing/article/espionage-article/data')
 
 # https://www.cfr.org/interactive/cyber-operations
 cfr_data <- read_csv('./cyber-operations-incidents.csv') 
 
 # added some useful columns, cleaned data, and removed sources
 cyber_incidents <- cfr_data %>% 
-  mutate(us_target=if_else(grepl("United States", Victims), TRUE, FALSE)) %>% 
+  mutate(us_target=if_else((grepl("United States", Victims)), TRUE, FALSE)) %>%
+  mutate(us_sponsor=if_else((grepl("United States", Sponsor)), TRUE, FALSE)) %>% 
   mutate(has_response=!is.na(Response)) %>% 
   mutate(Response=str_extract(Response, '\\w+\\b')) %>% 
   select(-Sources_1, -Sources_2, -Sources_3) %>% 
@@ -23,21 +24,22 @@ cyber_incidents <- cfr_data %>%
 # select cyber-incidents aginst the US
 us_targeted <- cyber_incidents %>% 
   filter(us_target == TRUE) %>%
+  filter(us_sponsor == FALSE) %>% 
   select(-us_target)
 
 # count of how often states respond to cyber-incidents by type
 # swap in us_targeted for for US-only count
 response_stats <- cyber_incidents %>% 
   filter(Type !='Undefined' & !is.na(Sponsor) & !is.na(Victims)) %>% 
-  filter(Date > as.Date('2010-01-01')) %>% 
-  # group_by(Type) %>% 
-  summarize(num_incidents = n(), 
-            num_responses = sum(has_response==TRUE), 
-            response_pct = mean(has_response==TRUE)*100) %>% 
-  ungroup() %>% 
+  filter(Date > as.Date('2010-01-01')) %>%
+  filter(Date < as.Date('2021-01-01')) %>%
+  group_by(Type) %>%
+  summarize(num_incidents = n(),
+            num_responses = sum(has_response==TRUE),
+            response_pct = mean(has_response==TRUE)*100) %>%
+  ungroup() %>%
   arrange(desc(response_pct))
 
-response_stats
 
 # print the table and save it as an xtable
 response_stats
